@@ -2,8 +2,11 @@
 
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { getPosts } from "@/_actions/postAction";
 
 export default function Home() {
+  const  data = getPosts();
+  console.log(data);
   const { push } = useRouter();
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
