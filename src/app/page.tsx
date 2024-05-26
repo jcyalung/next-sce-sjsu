@@ -3,10 +3,9 @@
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { getPosts } from "@/_actions/postAction";
+import ServerComponent from "./ServerComponent";
 
 export default function Home() {
-  const  data = getPosts();
-  console.log(data);
   const { push } = useRouter();
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -60,6 +59,7 @@ export default function Home() {
             Submit
           </button>
       </form>
+      <ServerComponent />
     </main>
   );
 }
