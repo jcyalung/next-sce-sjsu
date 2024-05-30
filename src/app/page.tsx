@@ -2,11 +2,30 @@
 
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { getPosts, getUsers } from "@/_actions/postAction";
 
 export default function Home() {
   const { push } = useRouter();
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const payload = {
+      username: event.currentTarget.username.value,
+      password: event.currentTarget.password.value,
+    };
+
+    try {
+      const { data } = await axios.post("/api/auth/login", payload)
+
+      alert(JSON.stringify(data));
+
+      push("/dashboard");
+    } catch(e) {
+      const error = e as AxiosError;
+      alert(error.message);
+    } 
+  };
+    /*
     event.preventDefault();
 
     const payload = {
@@ -24,7 +43,11 @@ export default function Home() {
       const error = e as AxiosError;
       alert(error.message);
     }
-  };
+    */
+
+  const register = () => {
+    push("/registration");
+  }
   
   return (
     <main>
@@ -57,6 +80,13 @@ export default function Home() {
             Submit
           </button>
       </form>
+      <button 
+      type="submit"
+      onClick={register}
+      className="p-2 bg-orange-500 text-white w-fit rounded"
+      >
+        Register
+      </button>
     </main>
   );
 }
