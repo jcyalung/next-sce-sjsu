@@ -28,3 +28,13 @@ export async function getUsers() {
         return { errMsg: error.message }
     }
 }
+
+export async function getUsernames() {
+    try {
+        await connectDB();
+        const result = JSON.parse(JSON.stringify(await User.find())).map((x) => x.username);
+        return { result };
+    } catch (error) {
+        return { errMsg: error.message }
+    }
+}

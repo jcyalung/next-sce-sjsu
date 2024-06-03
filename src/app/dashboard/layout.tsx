@@ -43,7 +43,7 @@ export default function DashboardLayout({
     );
 }
 
-async function getUser() {
+export async function getUser() {
     try {
         const { data } = await axios.get("/api/auth/me");
 

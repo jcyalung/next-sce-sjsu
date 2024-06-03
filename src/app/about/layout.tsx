@@ -1,11 +1,9 @@
-"use client";
+"use client"
 
-import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-
-export default function DashboardLayout({
+export default function AboutLayout({
     children
 }: {
     children: React.ReactNode;

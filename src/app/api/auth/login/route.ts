@@ -1,7 +1,7 @@
 import { serialize } from "cookie";
 import { sign } from "jsonwebtoken";
 import { NextResponse } from "next/server";
-import { COOKIE_NAME, MAX_AGE } from "../../../../../constants";
+import { COOKIE_NAME, MAX_AGE } from "@/app/constants";
 import connectDB from "@/config/database";
 import { getUsers } from "@/_actions/postAction";
 // file name must be named route
@@ -15,18 +15,8 @@ export async function POST(request: Request) {
     // authenticate user 
     try {
         await connectDB();
-        const account = result.filter((account: { username: any; password: any; }) => account.username == username && account.password == password);
+        const account = result.filter((account: { username: any; password: any; firstName: any; lastName: any;}) => account.username == username && account.password == password);
         //console.log(account);
-        if(username !== 'admin' && password !== 'admin' && !account) {
-            return NextResponse.json(
-                {
-                    message: "Unauthorized",
-                },
-                {
-                    status: 401,
-                }
-            );
-        }
     } catch (error) {
         return NextResponse.json({message: "An error occured"}, { status: 400 });
     }

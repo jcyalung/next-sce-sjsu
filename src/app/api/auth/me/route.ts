@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { COOKIE_NAME } from "../../../../../constants";
+import { COOKIE_NAME } from "@/app/constants";
 import { NextResponse } from "next/server";
 import { verify } from "jsonwebtoken";
 
@@ -21,7 +21,7 @@ export async function GET() {
     const { value } = token;
     const secret = process.env.JWT_SECRET || "";
     try {
-        verify(value, secret);
+        const result = verify(value, secret);
         const response = {
             user: "Super Top Secret User"
         }

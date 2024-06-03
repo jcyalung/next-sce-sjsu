@@ -1,17 +1,17 @@
+import { getUsers } from "@/_actions/postAction";
 import connectDB from "@/config/database";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 export async function POST(request : Request) {
-    const { username, password } = await request.json();
-    console.log(username);
+    const { firstName, lastName, username, password, major, plan } = await request.json();
+    const { result } = await getUsers();
+    console.log(result);
+
     // check if email ends with @sjsu.edu
-    if(!username.endsWith("@sjsu.edu")) {
-        return NextResponse.json({message: "Your email must end in @sjsu.edu."}, {status: 400})
-    }
     await connectDB();
     try {
-        await User.create({username, password});
+        await User.create({firstName, lastName, username, password, major, plan});
         return NextResponse.json({message: "Successfully created user!"}, { status: 201 });
     }
     catch (e) {

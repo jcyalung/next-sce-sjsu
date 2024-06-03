@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import { COOKIE_NAME } from "@/app/constants";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +14,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
