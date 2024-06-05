@@ -25,14 +25,15 @@ export async function getUsers() {
 
         return { result };
     } catch (error) {
+        console.log(error.message);
         return { errMsg: error.message }
     }
 }
 
-export async function getUsernames() {
+export async function getEmails() {
     try {
         await connectDB();
-        const result = JSON.parse(JSON.stringify(await User.find())).map((x) => x.username);
+        const result = JSON.parse(JSON.stringify(await User.find())).map((x) => x.email);
         return { result };
     } catch (error) {
         return { errMsg: error.message }

@@ -22,8 +22,12 @@ export async function GET() {
     const secret = process.env.JWT_SECRET || "";
     try {
         const result = verify(value, secret);
+        const { firstName, lastName, membershipState, email}: any = result;
         const response = {
-            user: "Super Top Secret User"
+            firstName,
+            lastName,
+            membershipState,
+            email,
         }
         return new Response(JSON.stringify(response), {
             status: 200,

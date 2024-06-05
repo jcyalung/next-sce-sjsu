@@ -2,12 +2,13 @@ import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema(
     {
-        firstName:      String,
-        lastName:       String,
-        username:       String,
-        password:       String,
-        major:          String,
-        plan:           String,
+        firstName:          String,
+        lastName:           String,
+        email:              String,
+        password:           String,
+        major:              String,
+        plan:               String,
+        membershipState:    Number,
     },
     {
         timestamps: true,
